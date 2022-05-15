@@ -1,0 +1,34 @@
+<div class="container-fluid vh-100 p-4 bg-dark">
+    <div class="container w-75 p-4 bg-light bg-opacity-75 rounded-4">
+        <table class="table table-hover  text-dark">
+            <caption>Listado de Estudiantes</caption>
+            <thead class="table-dark fs-5">
+              <tr>
+                <th class="col-4" scope="col">Nombre</th>
+                <th class="col-1 text-center" scope="col">Curso</th>
+                <th class="col-4" scope="col"></th>
+                <th class="col-1" scope="col">Calificación</th>
+                <th class="col-2" scope="col">Resultado</th>
+              </tr>
+            </thead>
+            <tbody class="align-middle">
+              <tr *ngFor="let student of students">
+                <td class="fw-bold">{{ student.apellido | uppercase }}, {{ student.nombre }} </td>
+                <td [ngSwitch]="student.curso" class="text-center">
+                    <span *ngSwitchCase="'Angular'"><i class="fa-brands fa-angular fs-3"></i></span>
+                    <span *ngSwitchCase="'React'"><i class="fa-brands fa-react fs-3"></i></span>
+                    <span *ngSwitchCase="'Vue'"><i class="fa-brands fa-vuejs fs-3"></i></span>
+                    <span *ngSwitchCase="'Node'"><i class="fa-brands fa-node fs-3"></i></span>
+                </td>
+                <td>{{ student.curso }}</td>
+                <td class="text-center">{{ student.nota }}</td>
+                <td [ngClass]="student.nota >= 6 ? ['bg-success', 'fst-italic'] : 'bg-danger'" class="text-white fw-semibold" >
+                   <span *ngIf="student.nota >= 8">Promocionado</span> 
+                   <span *ngIf="student.nota >= 6 && student.nota < 8">Aprobado</span> 
+                   <span *ngIf="student.nota < 6">Reprobado</span> 
+                </td>
+              </tr>          
+            </tbody>
+          </table>
+    </div>
+</div>
